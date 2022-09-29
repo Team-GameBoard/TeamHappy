@@ -32,8 +32,8 @@ public class LoginFilter implements Filter {
 //		System.out.println(!Arrays.asList(whiteList).contains(req.getServletPath()) && Objects.isNull(session.getAttribute("userId")));
 		
 		if(!Arrays.asList(whiteList).contains(req.getServletPath()) && Objects.isNull(session.getAttribute("userId"))) {
-			req.getRequestDispatcher("/NewLogin.jsp").forward(request, response);
-//			res.sendRedirect("/NewLogin.jsp");
+			req.getRequestDispatcher("/Login.jsp").forward(request, response);
+//			res.sendRedirect("/Login.jsp");
 		}
 		
 //		System.out.println(req.getServletPath().equals(whiteList));
@@ -47,6 +47,6 @@ public class LoginFilter implements Filter {
 
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		whiteList = new String[]{"/test.jsp" , "/NewLogin.jsp", "/NewSignUp.jsp", "/user", "/game"};
+		whiteList = new String[]{"/test.jsp" , "/Login.jsp", "/SignUp.jsp", "/user", "/game"};
 	}
 }

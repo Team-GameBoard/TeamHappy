@@ -264,7 +264,7 @@ public class BoardController extends HttpServlet {
 		// 데이터값 입력 유무만 유효성 검증
 		if (userId == null || userId.trim().length() == 0 || title == null || title.trim().length() == 0
 				|| content == null || content.trim().length() == 0) {
-			response.sendRedirect("NewWrite.jsp");
+			response.sendRedirect("Write.jsp");
 			return;// write() 메소드 종료
 		}
 

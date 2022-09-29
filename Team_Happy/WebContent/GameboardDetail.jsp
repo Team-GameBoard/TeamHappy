@@ -91,8 +91,8 @@ function sendDelete(){
 						</c:when>
 
 						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="NewLogin.jsp">LogIn</a></li>
-							<li class="nav-item"><a class="nav-link" href="NewSignUp.jsp">SignUp</a></li>
+							<li class="nav-item"><a class="nav-link" href="Login.jsp">LogIn</a></li>
+							<li class="nav-item"><a class="nav-link" href="SignUp.jsp">SignUp</a></li>
 						</c:otherwise>
 					</c:choose>
 

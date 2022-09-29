@@ -23,8 +23,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="NewLogin.jsp">LogIn</a></li>
-					<li class="nav-item"><a class="nav-link" href="NewSignUp.jsp">SignUp</a></li>
+					<li class="nav-item"><a class="nav-link" href="Login.jsp">LogIn</a></li>
+					<li class="nav-item"><a class="nav-link" href="SignUp.jsp">SignUp</a></li>
 				</ul>
 			</div>
 		</div>

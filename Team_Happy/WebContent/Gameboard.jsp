@@ -66,7 +66,7 @@
 						</c:when>
 
 						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="NewLogin.jsp">LogIn</a></li>
+							<li class="nav-item"><a class="nav-link" href="Login.jsp">LogIn</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="NewSignUp.jsp">SignUp</a></li>
 						</c:otherwise>
@@ -146,7 +146,7 @@
 	</div>
 	<div style="position: absolute; right: 100px; bottom: 150px;">
 		<button class="btn btn-lg btn-primary btn-block text-uppercase"
-			onclick="location.href='NewWrite.jsp?game_num=${gameNum}'">글쓰기</button>
+			onclick="location.href='Write.jsp?game_num=${gameNum}'">글쓰기</button>
 	</div>
 
 
