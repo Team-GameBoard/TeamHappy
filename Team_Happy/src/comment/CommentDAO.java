@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import util.DBUtil;
@@ -56,7 +57,7 @@ public class CommentDAO {
 									 rset.getInt(2),
 									 rset.getString(3),
 									 rset.getString(4),
-									 rset.getTimestamp(5)));
+									 new SimpleDateFormat("yyyy/MM/dd HH:mm").format(rset.getTimestamp(5))));
 			}
 			
 			

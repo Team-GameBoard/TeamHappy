@@ -78,7 +78,7 @@
 	</nav>
 
 	<div
-		style="border: 1px solid black; width: 90vw; min-width: 1040px; height: 70vh; margin: 0 auto; margin-top: 5rem; display: flex; justify-content: space-evenly; align-content: space-evenly; vertical-align: middle;">
+		style="width: 90vw; min-width: 1040px; height: 70vh; margin: 0 auto; margin-top: 5rem; display: flex; justify-content: space-evenly; align-content: space-evenly; vertical-align: middle;">
 		<div
 			style="border: 1px solid black; width: 230px; height: 550px; margin: 10px; text-align: center; display: flex; justify-content: space-evenly; align-content: space-evenly; vertical-align: middle; flex-wrap: wrap;">
 			<h5 class="fw-bolder">다른 게임</h5>
@@ -87,9 +87,9 @@
 				<c:choose>
 					<c:when test="${game.gameNum ne gameNum}">
 						<div class="fw-bolder"
-						style="border: 1px solid black; width: 200px; height: 200px; line-height: 200px; 
+						style="width: 200px; height: 200px; line-height: 200px; 
 						background-image: url('img/${game.gameName}.png'); background-size: cover; cursor: pointer;"
-						onclick="location.href='board?game_num=${game.gameNum}';">${game.gameName}</div>
+						onclick="location.href='board?game_num=${game.gameNum}';"></div>
 					</c:when>
 					<c:otherwise>
 						<c:set var="title" value="${game.gameName}"></c:set>	
@@ -101,7 +101,7 @@
 		<div
 			style="border: 1px solid black; width: 800px; height: 550px; margin: 10px;">
 			
-			<h3>${title}</h3>
+			<h3 style="margin-left:1rem; margin-top:1rep;">${title}</h3><br/>
 			<div class="row" style="margin-left: auto; margin-right: auto;">
 				
 				<table class="myTable table table-striped"
@@ -139,6 +139,10 @@
 			<form method="post" action="board">
 				<input type="hidden" name="command" value="search">
 				<input type="hidden" name="game_num" value="${gameNum}">
+				<select name="selectWhere">
+					<option value="board_title">제목</option>
+					<option value="board_content">내용</option>
+				</select>
 				<input type="text" name="searchkey" placeholder="검색">
 				<input type="submit" value="검색">
 			</form>

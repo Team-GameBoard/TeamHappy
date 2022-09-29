@@ -78,9 +78,9 @@
 				justify-content: space-evenly; align-content: space-evenly; vertical-align: middle;">
 				<c:forEach items="${requestScope.list}" var="data">
 					<div class="fw-bolder" 
-					style="border: 1px solid black; width: 200px; height: 200px; line-height: 200px; cursor: pointer; 
+					style="width: 200px; height: 200px; line-height: 200px; cursor: pointer; 
 					background-image: url('img/${data.gameName}.png'); background-size: cover;" 
-					onclick="location.href='board?game_num=${data.gameNum}';">${data.gameName}</div>
+					onclick="location.href='board?game_num=${data.gameNum}';"></div>
 				
 				</c:forEach>
 			</div>

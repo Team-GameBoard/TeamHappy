@@ -160,7 +160,9 @@ function sendDelete(){
 			      	<input type="hidden" name="command" value="commentDelete">
 			      	<input type="hidden" name="commentNum" value="${data.commentNum}"> 
 			      	<input type="hidden" name="boardNum" value="${requestScope.resultContent.boardNum}">
-			      	<input type="submit" value="삭제" onclick="idCheck2('${data.userId}')"  >
+			      	<c:if test="${sessionScope.userId == data.userId || sessionScope.userId == 'admin'}">
+			      		<input type="submit" value="삭제" onclick="idCheck2('${data.userId}')"  >
+			      	</c:if>
 			      </form>
 			       </div> 
 			</c:forEach>
@@ -169,10 +171,10 @@ function sendDelete(){
 			<%-- 덧글창 입니다. --%>
 		
 		
-	</div>
+	</div><br/>
 	
 
-	<div style="margin: 0 auto; border: 1px solid black; text-align: right; width:700px;">
+	<div style="margin: 0 auto; text-align: right; width:700px;">
 		<c:if test="${sessionScope.userId == requestScope.resultContent.userId || sessionScope.userId == 'admin'}">
 			<form name="requestForm" method=post action="board">
 				<input type=hidden name=num value="${requestScope.resultContent.boardNum}">

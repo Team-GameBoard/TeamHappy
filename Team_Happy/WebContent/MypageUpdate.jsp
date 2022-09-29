@@ -59,7 +59,7 @@
 	<form action="board" method="post">
 	<div style="border: 1px solid black; width: 30vw; min-width: 1040px; height: 70vh; margin: 0 auto; margin-top: 5rem; ">
 		<div style="border: 1px solid black; height: 10%; width: 115px; margin-top: 2rem; margin-left: 13rem;">
-			<h3>My Page</h3>
+			<h3 style="">My Page</h3>
 		</div>
 		<div style="border: 1px solid black; width: 60%; height: 60%; margin: 0 auto; margin-top: 1rem; display: flex; align-items: center;">
 			<div style="width: 500px; height: 300px; margin: 0 auto; display: flex;">
@@ -71,7 +71,7 @@
 					<h3 style="margin: 1.5rem 0.5rem 1.5rem 0">게시판 등급 :</h2>
 				</div>
 				<input type="hidden" name="command" value="mypageUpdate">
-				<div style="border: 1px solid black; width: 60%; height: 100%; text-align: center;">
+				<div style="width: 60%; height: 100%; text-align: center;">
 					<h3 style="margin: 1.4rem 0">${requestScope.userInfo.userId}</h3>
 					<h3 style="margin: 1.1rem 0"><input name="Pw" type="password" style="width: 100%;" placeholder="기존 패스워드"></h3>
 					<h3 style="margin: 1.1rem 0"><input name="newPw" type="password" style="width: 100%;" placeholder="신규 패스워드"></h3>
