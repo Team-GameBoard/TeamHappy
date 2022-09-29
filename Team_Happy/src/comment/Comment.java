@@ -12,6 +12,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Comment {
 	private int commentNum;
 	private int boardNum;
@@ -24,5 +25,13 @@ public class Comment {
 		this.boardNum = boardNum;
 		this.userId = userId;
 		this.commentBoard = commentBoard;
+	}
+	
+	
+	// 덧글 삭제
+	public Comment(int commentNum, String userId , int boardNum) {
+		this.commentNum = commentNum;
+		this.userId = userId;
+		this.boardNum = boardNum;
 	}
 }

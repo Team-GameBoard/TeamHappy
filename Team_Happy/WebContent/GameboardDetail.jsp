@@ -36,6 +36,29 @@ function sendDelete(){
 	}
 }	
 </script>
+
+<style>
+.list-wrap {
+	display: flex;
+    justify-content: flex-start;
+    margin-top: 1em;
+    border-bottom: 1px solid #b6b6b6;
+}
+
+.list-wrap > * {
+	margin-right: 29px;
+    margin-left: 40px;
+}
+
+.in-list {
+	display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
+    border-bottom: 1px solid #ccc;
+}
+
+</style>
+
 </head>
 <body>
 
@@ -79,7 +102,7 @@ function sendDelete(){
         </nav>
 	
 	
-	<div style="margin: 5rem auto 0; border: 1px solid black; width:700px; height: 500px;">
+	<div style="margin: 5rem auto 0; border: 1px solid black; width:700px; height: 500px; overflow: auto">
 
 		<br><h2 class="text-center">게시글 보기</h2>
 		<p>&nbsp;</p>
@@ -117,6 +140,35 @@ function sendDelete(){
 			<input type="text" name="commentWrite" placeholder="댓글을 입력해주세요."> 
 			<input type="submit" value="저장">
 		</form>
+		
+		<%-- 덧글창 입니다. --%>
+	
+			<div class="list-wrap">
+			      <p>No</p>
+			      <p>작성자</p>
+			      <p>내용</p>
+			      <p>작성일자</p>
+			      <p> </p>
+			</div>
+			<c:forEach items="${requestScope.comList}" var="data" varStatus="loop">
+			  <div class="in-list" >
+			      <p scope="row">${loop.count}</p>
+			      <p>${data.userId}</p>
+			      <p>${data.commentBoard}</p>
+			      <p>${data.commentCreatedDate}</p>
+			      <form action="comment" method="post" name="comfun" >
+			      	<input type="hidden" name="command" value="commentDelete">
+			      	<input type="hidden" name="commentNum" value="${data.commentNum}"> 
+			      	<input type="hidden" name="boardNum" value="${requestScope.resultContent.boardNum}">
+			      	<input type="submit" value="삭제" onclick="idCheck2('${data.userId}')"  >
+			      </form>
+			       </div> 
+			</c:forEach>
+			
+		
+			<%-- 덧글창 입니다. --%>
+		
+		
 	</div>
 	
 
@@ -135,38 +187,7 @@ function sendDelete(){
 		<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='javascript:window.history.back();'">목록</button>
 	</div>
 		
-	<tbody>
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th scope="col">No</th>
-			      <th scope="col">작성자</th>
-			      <th scope="col">내용</th>
-			      <th scope="col">작성일자</th>
-			      <th scope="col"> </th>
-			    </tr>
-		</thead>
-		
-			<c:forEach items="${requestScope.comList}" var="data">
-			  <tbody>
-			    <tr>
-			      <th scope="row">${data.commentNum}</th>
-			      <td>${data.userId}</td>
-			      <td>${data.commentBoard}</td>
-			      <td>${data.commentCreatedDate}</td>
-			      <td>
-			      <form action="comment" method="post" >
-			      	<input type="hidden" name="command" value="commentdel">
-			      	<input type="hidden" name="commentNum" value="${dataCommentNum}"> 
-			      	<input type="submit" value="삭제" >
-			      </form>
-			      </td>
-			    </tr>
-			  </tbody>
-			</table>
-			</c:forEach>
-			
-		</tbody>
+	
 	
 
 	<!-- Footer-->
@@ -175,5 +196,21 @@ function sendDelete(){
 			<p class="m-0 text-center text-white">Team Happy _ 주현 , 재선 , 정현</p>
 		</div>
 	</footer>
+	
+	<script type="text/javascript">
+	function idCheck2(test){
+		var commentUser = test;
+		var currentUserId = '<%= (String)session.getAttribute("userId") %>';
+		// session의 id와 현재 id 비교
+		if(commentUser !== currentUserId){
+			alert("권한이 없습니다.");
+			return false;
+		} else {
+			alert("덧글이 삭제 되었습니다.");
+			return true;
+		}
+	}
+	</script>
+	
 </body>
 </html>
