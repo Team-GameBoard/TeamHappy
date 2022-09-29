@@ -18,7 +18,7 @@ public class Comment {
 	private int boardNum;
 	private String userId;
 	private String commentBoard;
-	private Timestamp commentCreatedDate;
+	private String commentCreatedDate;
 	
 	// 덧글 작성
 	public Comment (int boardNum, String userId , String commentBoard) {

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import user.User;
@@ -31,7 +32,7 @@ private static Board instance = new Board();
 			while(rset.next()) {
 				data.add(new Board(rset.getInt(1), rset.getString(2),
 						rset.getInt(3), rset.getString(4), rset.getString(5),
-						rset.getTimestamp(6), rset.getTimestamp(7), rset.getInt(8)));
+						new SimpleDateFormat("yyyy/MM/dd HH:mm").format(rset.getTimestamp(6)), rset.getTimestamp(7), rset.getInt(8)));
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
@@ -92,7 +93,7 @@ private static Board instance = new Board();
 			if(rset.next()){
 				vo = new Board(num,rset.getString(2),
 						rset.getInt(3),rset.getString(4),rset.getString(5).replaceAll("</n>","<br>"),
-						rset.getTimestamp(6),rset.getTimestamp(7), rset.getInt(8));
+						new SimpleDateFormat("yyyy/MM/dd HH:mm").format(rset.getTimestamp(6)),rset.getTimestamp(7), rset.getInt(8));
 			}
 			
 		}finally{
@@ -149,14 +150,15 @@ private static Board instance = new Board();
 		return result;
 	}
 	
-	public static ArrayList<Board> searchContents(String keyword, int gameNum) throws SQLException {
+	public static ArrayList<Board> searchContents(String selectWhere, String keyword, int gameNum) throws SQLException {
 		Connection con = null;	
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Board> data = null;
 		String searchKey = "%"+keyword+"%";
 		
-		String sql = "select * from board where game_num = ? and board_title like ?";
+		
+		String sql = "select * from board where game_num = ? and " + selectWhere + " like ?";
 		try {
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -168,7 +170,7 @@ private static Board instance = new Board();
 			while(rset.next()) {
 				data.add(new Board(rset.getInt(1), rset.getString(2),
 						rset.getInt(3), rset.getString(4), rset.getString(5),
-						rset.getTimestamp(6), rset.getTimestamp(7), rset.getInt(8)));
+						new SimpleDateFormat("yyyy/MM/dd HH:mm").format(rset.getTimestamp(6)), rset.getTimestamp(7), rset.getInt(8)));
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);

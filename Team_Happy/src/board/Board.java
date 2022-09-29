@@ -20,9 +20,11 @@ public class Board {
 	private int gameNum;
 	private String boardTitle;
 	private String boardContent;
-	private Timestamp boardCreatedDate;
+	private String boardCreatedDate;
 	private Timestamp boardUpdateDate;
 	private int readNum;
+	
+	
 	
 	public Board(String userId, String boardTitle, String boardContent) {
 		this.userId = userId;
@@ -42,5 +44,6 @@ public class Board {
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
 	}
+
 	
 }

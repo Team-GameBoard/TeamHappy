@@ -56,9 +56,10 @@ public class BoardController extends HttpServlet {
 		String url = "error.jsp";
 		String keyword = request.getParameter("searchkey");
 		String gameNum = request.getParameter("game_num");
+		String selectWhere = request.getParameter("selectWhere");
 		
 		try {
-			request.setAttribute("list", BoardDAO.searchContents(keyword, Integer.parseInt(gameNum)));
+			request.setAttribute("list", BoardDAO.searchContents(selectWhere, keyword, Integer.parseInt(gameNum)));
 			request.setAttribute("game", GameDAO.getAllContents());
 			url = "Gameboard.jsp";
 			
