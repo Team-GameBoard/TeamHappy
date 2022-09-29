@@ -47,7 +47,26 @@ public class BoardController extends HttpServlet {
 			mypage(request, response);
 		} else if (command.equals("mypageUpdate")) {
 			mypageUpdate(request, response);
+		} else if (command.equals("search")) {
+			search(request, response);
 		}
+	}
+	
+	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "error.jsp";
+		String keyword = request.getParameter("searchkey");
+		String gameNum = request.getParameter("game_num");
+		
+		try {
+			request.setAttribute("list", BoardDAO.searchContents(keyword, Integer.parseInt(gameNum)));
+			request.setAttribute("game", GameDAO.getAllContents());
+			url = "Gameboard.jsp";
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			request.setAttribute("error", "모두 보기 실패 재 실행 해 주세요");
+		}
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	private void mypageUpdate(HttpServletRequest request, HttpServletResponse response) {

@@ -149,4 +149,31 @@ private static Board instance = new Board();
 		return result;
 	}
 	
+	public static ArrayList<Board> searchContents(String keyword, int gameNum) throws SQLException {
+		Connection con = null;	
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> data = null;
+		String searchKey = "%"+keyword+"%";
+		
+		String sql = "select * from board where game_num = ? and board_title like ?";
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, gameNum);
+			pstmt.setString(2, searchKey);
+			
+			rset = pstmt.executeQuery();
+			data = new ArrayList<Board>();
+			while(rset.next()) {
+				data.add(new Board(rset.getInt(1), rset.getString(2),
+						rset.getInt(3), rset.getString(4), rset.getString(5),
+						rset.getTimestamp(6), rset.getTimestamp(7), rset.getInt(8)));
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return data;
+	}
+	
 }

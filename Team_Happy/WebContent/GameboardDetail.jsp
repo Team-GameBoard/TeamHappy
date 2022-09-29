@@ -184,7 +184,7 @@ function sendDelete(){
 		</c:if>
 		<br>
 
-		<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='javascript:window.history.back();'">목록</button>
+		<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='board?game_num=${requestScope.resultContent.gameNum}';">목록</button>
 	</div>
 		
 	

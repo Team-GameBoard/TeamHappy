@@ -82,9 +82,10 @@
 		<div
 			style="border: 1px solid black; width: 230px; height: 550px; margin: 10px; text-align: center; display: flex; justify-content: space-evenly; align-content: space-evenly; vertical-align: middle; flex-wrap: wrap;">
 			<h5 class="fw-bolder">다른 게임</h5>
+			<c:set var="gameNum" value="${param.game_num}"></c:set>
 			<c:forEach items="${requestScope.game}" var="game">
 				<c:choose>
-					<c:when test="${game.gameNum ne requestScope.list.get(0).gameNum}">
+					<c:when test="${game.gameNum ne gameNum}">
 						<div class="fw-bolder"
 						style="border: 1px solid black; width: 200px; height: 200px; line-height: 200px; 
 						background-image: url('img/${game.gameName}.png'); background-size: cover; cursor: pointer;"
@@ -135,11 +136,17 @@
 					</div>
 				</div>
 			</div>
+			<form method="post" action="board">
+				<input type="hidden" name="command" value="search">
+				<input type="hidden" name="game_num" value="${gameNum}">
+				<input type="text" name="searchkey" placeholder="검색">
+				<input type="submit" value="검색">
+			</form>
 		</div>
 	</div>
 	<div style="position: absolute; right: 100px; bottom: 150px;">
 		<button class="btn btn-lg btn-primary btn-block text-uppercase"
-			onclick="location.href='NewWrite.jsp?game_num=${requestScope.list.get(0).gameNum}'">글쓰기</button>
+			onclick="location.href='NewWrite.jsp?game_num=${gameNum}'">글쓰기</button>
 	</div>
 
 
